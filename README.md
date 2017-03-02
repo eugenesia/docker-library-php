@@ -16,5 +16,7 @@ git checkout docker-library-master
 # Docker Library repo remote 'docker-library-origin'.
 git branch -u docker-library-origin/master docker-library-master
 git pull
+# Check which local branch is tracking which remote branch.
+git branch -vv
 ```
 
