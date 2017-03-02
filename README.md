@@ -9,7 +9,7 @@ Branches:
 ## Dev notes
 
 To pull from Docker Library repo, do this:
-```
+```bash
 git remote add docker-library-origin git@github.com:docker-library/php.git
 git checkout docker-library-master
 # Set local branch 'docker-library-master' to track 'master' branch of
