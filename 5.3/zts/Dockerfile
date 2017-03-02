@@ -4,10 +4,11 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-# Copied from Dockerfile-debian.template and modified for PHP versions <= 5.4
-# where the source file is .gz instead of .xz .
+# Copied from Dockerfile-debian.template and modified for PHP versions <= 5.3
+# where the source file is .gz instead of .xz , and gcc options are different.
 
-FROM debian:jessie
+# Cannot use jessie due to Openssl (version too new) linking error.
+FROM debian:wheezy
 
 # persistent / runtime deps
 ENV PHPIZE_DEPS \
@@ -43,7 +44,12 @@ ENV PHP_EXTRA_CONFIGURE_ARGS --enable-maintainer-zts
 # Enable linker optimization (this sorts the hash buckets to improve cache locality, and is non-default)
 # Adds GNU HASH segments to generated executables (this is used if present, and is much faster than sysv hash; in this configuration, sysv hash is also generated)
 # https://github.com/docker-library/php/issues/272
-ENV PHP_CFLAGS="-fstack-protector-strong -fpic -fpie -O2"
+#
+# 'gcc -fstack-protector-strong' doesn't work on Wheezy gcc.
+# See https://gcc.gnu.org/onlinedocs/gcc-4.7.2/gcc/Optimize-Options.html#Optimize-Options
+# and search for 'stack-protector' on the page.
+# ENV PHP_CFLAGS="-fstack-protector-strong -fpic -fpie -O2"
+ENV PHP_CFLAGS="-fstack-protector -fpic -fpie -O2"
 ENV PHP_CPPFLAGS="$PHP_CFLAGS"
 ENV PHP_LDFLAGS="-Wl,-O1 -Wl,--hash-style=both -pie"
 
