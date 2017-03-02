@@ -47,11 +47,12 @@ for version in "${versions[@]}"; do
 	rcVersion="${version%-rc}"
 
 	# scrape the relevant API based on whether we're looking for pre-releases
-	apiUrl="https://secure.php.net/releases/index.php?json&max=50&version=${rcVersion%%.*}"
+	apiUrl="https://secure.php.net/releases/index.php?json&max=100&version=${rcVersion%%.*}"
 	apiJqExpr='
 		(keys[] | select(startswith("'"$rcVersion"'."))) as $version
 		| [ $version, (
 			.[$version].source[]
+      | select(has("filename"))
 			| select(.filename | endswith(".xz"))
 			|
 				"https://secure.php.net/get/" + .filename + "/from/this/mirror",
