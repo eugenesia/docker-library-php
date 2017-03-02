@@ -16,6 +16,10 @@ declare -A gpgKeys=(
 	# jpauli & tyrael
 	# https://secure.php.net/downloads.php#gpg-5.6
 	[5.6]='0BD78B5F97500D450838F95DFE857D9A90D90EC1 6E4F6AB321FDC07F2C332E3AC2BF0BC433CFC8B3'
+
+  # https://secure.php.net/gpg-keys.php#gpg-5.5
+  # https://secure.php.net/releases/#5.5
+	[5.5]='0B96609E270F565C13292B24C13C70B87267B52D 0BD78B5F97500D450838F95DFE857D9A90D90EC1'
 )
 # see https://secure.php.net/downloads.php
 
