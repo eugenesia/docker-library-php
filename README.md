@@ -12,6 +12,9 @@ To pull from Docker Library repo, do this:
 ```
 git remote add docker-library-origin git@github.com:docker-library/php.git
 git checkout docker-library-master
+# Set local branch 'docker-library-master' to track 'master' branch of
+# Docker Library repo remote 'docker-library-origin'.
 git branch -u docker-library-origin/master docker-library-master
+git pull
 ```
 
