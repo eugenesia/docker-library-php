@@ -110,7 +110,7 @@ for version in "${versions[@]}"; do
 
 	dockerfiles=()
 
-	{ generated_warning; cat Dockerfile-debian-gz.template; } > "$version/Dockerfile"
+	{ generated_warning; cat Dockerfile-debian-gz-5.4.template; } > "$version/Dockerfile"
 	cp -v \
 		docker-php-entrypoint \
 		docker-php-ext-* \
