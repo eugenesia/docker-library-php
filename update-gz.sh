@@ -106,21 +106,25 @@ for version in "${versions[@]}"; do
 
 	dockerfiles=()
 
-	{ generated_warning; cat Dockerfile-debian.template; } > "$version/Dockerfile"
+	{ generated_warning; cat Dockerfile-debian-gz.template; } > "$version/Dockerfile"
 	cp -v \
 		docker-php-entrypoint \
 		docker-php-ext-* \
 		docker-php-source-gz \
 		"$version/"
+  # Rename docker-php-source-gz to former name so other scripts work.
+  mv $version/docker-php-source-gz $version/docker-php-source
 	dockerfiles+=( "$version/Dockerfile" )
 
 	if [ -d "$version/alpine" ]; then
-		{ generated_warning; cat Dockerfile-alpine.template; } > "$version/alpine/Dockerfile"
+		{ generated_warning; cat Dockerfile-alpine-gz.template; } > "$version/alpine/Dockerfile"
 		cp -v \
 			docker-php-entrypoint \
 			docker-php-ext-* \
 			docker-php-source-gz \
 			"$version/alpine/"
+    # Rename docker-php-source-gz to former name so other scripts work.
+    mv $version/alpine/docker-php-source-gz $version/docker-php-source
 		dockerfiles+=( "$version/alpine/Dockerfile" )
 	fi
 
@@ -150,6 +154,8 @@ for version in "${versions[@]}"; do
 			docker-php-ext-* \
 			docker-php-source-gz \
 			"$version/$target/"
+    # Rename docker-php-source-gz to former name so other scripts work.
+    mv $version/$target/docker-php-source-gz $version/$target/docker-php-source
 		dockerfiles+=( "$version/$target/Dockerfile" )
 	done
 
