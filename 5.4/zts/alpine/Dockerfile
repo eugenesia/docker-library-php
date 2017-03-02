@@ -24,7 +24,7 @@ RUN apk add --no-cache --virtual .persistent-deps \
 		curl \
 		tar \
 		xz \
-    gunzip
+    gzip
 
 # ensure www-data user exists
 RUN set -x \
