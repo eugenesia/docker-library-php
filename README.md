@@ -26,7 +26,7 @@ For PHP >= 5.5:
 For PHP <= 5.4:
 ```bash
 ./update-gz.sh 5.4
-~~./update-gz.sh 5.3~~ (compiling PHP 5.3 fails for a number of reasons)
+# ./update-gz.sh 5.3 (compiling PHP 5.3 fails for a number of reasons)
 ```
 
 ## Dev notes
