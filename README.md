@@ -31,16 +31,18 @@ For PHP <= 5.4:
 
 ## Dev notes
 
-To pull from Docker Library repo for merging with eugenesia repo:
+Merge with upstream original repository at docker-library:
 
 ```bash
-git remote add docker-library-origin git@github.com:docker-library/php.git
-git checkout docker-library-master
-# Set local branch 'docker-library-master' to track 'master' branch of
-# Docker Library repo remote 'docker-library-origin'.
-git branch -u docker-library-origin/master docker-library-master
-git pull
+git remote add upstream git@github.com:docker-library/php.git
+git fetch upstream
+git checkout master
+git merge upstream/master
 # Check which local branch is tracking which remote branch.
 git branch -vv
 ```
+
+References:
+* Configuring a remote for a fork: https://help.github.com/articles/configuring-a-remote-for-a-fork/
+* Syncing a fork: https://help.github.com/articles/syncing-a-fork/
 
