@@ -48,8 +48,13 @@ ENV PHP_EXTRA_CONFIGURE_ARGS --enable-maintainer-zts
 # 'gcc -fstack-protector-strong' doesn't work on Wheezy gcc.
 # See https://gcc.gnu.org/onlinedocs/gcc-4.7.2/gcc/Optimize-Options.html#Optimize-Options
 # and search for 'stack-protector' on the page.
+#
+# Use -mcmodel=large to fix error:
+# /usr/bin/ld: ext/pcre/pcrelib/.libs/pcre_compile.o: relocation R_X86_64_PC32 against symbol `php_pcre_compile2' can not be used when making a shared object; recompile with -fPIC
+# See http://stackoverflow.com/questions/21224090/gcc-shared-library-failed-linking-to-glibc
 # ENV PHP_CFLAGS="-fstack-protector-strong -fpic -fpie -O2"
-ENV PHP_CFLAGS="-fstack-protector -fpic -fpie -O2"
+ENV PHP_CFLAGS="-fstack-protector -fpic -fpie -O2 -mcmodel=large"
+
 ENV PHP_CPPFLAGS="$PHP_CFLAGS"
 ENV PHP_LDFLAGS="-Wl,-O1 -Wl,--hash-style=both -pie"
 
