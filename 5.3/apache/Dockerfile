@@ -94,7 +94,8 @@ RUN { \
 
 # Debian Wheezy doesn't have apache2-dev.
 # ENV PHP_EXTRA_BUILD_DEPS apache2-dev
-ENV PHP_EXTRA_BUILD_DEPS apache2-prefork-dev
+# Also need bison and lemon packages for ./configure
+ENV PHP_EXTRA_BUILD_DEPS apache2-prefork-dev bison lemon
 # Fix error: ./configure: 6372: ./configure: apxs: not found
 # Try --enable-shared to fix 'recompile with fPIC' error, see below and
 # http://stackoverflow.com/questions/13812185/how-to-recompile-with-fpic
