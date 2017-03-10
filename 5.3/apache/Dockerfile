@@ -12,6 +12,7 @@ FROM debian:wheezy
 
 # persistent / runtime deps
 # libmysql++-dev needed to install pdo_mysql extension in future.
+# libpq-dev needed for pdo_pgsql extension in future.
 ENV PHPIZE_DEPS \
 		autoconf \
 		file \
@@ -21,7 +22,8 @@ ENV PHPIZE_DEPS \
 		make \
 		pkg-config \
 		re2c \
-    libmysql++-dev
+    libmysql++-dev \
+    libpq-dev
 RUN apt-get update && apt-get install -y \
 		$PHPIZE_DEPS \
 		ca-certificates \
